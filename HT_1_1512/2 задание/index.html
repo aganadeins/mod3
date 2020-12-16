@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Алиса Лаврова</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+    <header><h1>{{sitename}}</h1></header>
+
+    <div id="main">
+        <nav>Навигация</nav>
+        <main>
+            <div class="flex">
+                <div>
+                    <figure>
+                        <img class="avatar" v-bind:src="user.image" width="300"> 
+                    </figure>
+                </div>
+                <div class="about">
+                    <h1 v-text="user.title"></h1>
+                    <p class="login">{{user.login}}</p>
+                    <p><i>"{{user.status}}"</i><p>
+                    <br>
+                    <p>Возраст: {{user.age}} лет</p>
+                    <p>Живет в городе: {{user.place}}"<p>
+                    <p>Окончила: {{user.study}} '{{user.grade}}</p>
+                    <p>Подписчики: {{user.subscribers}}</p>
+                </div>
+            </div>
+        </main>
+    <aside><a href="#">Выход</a></aside>
+    </div>
+    <footer>Подвал</footer>
+</div>
+
+
+    <script>
+        let app = Vue.createApp({
+            data: function(){
+                return {
+                    sitename: 'клубОК - уютная социальная сеть',
+                    user:{
+                        id: 1,
+                        title: 'Татьяна Лаврова',
+                        status: 'У меня нет всего того, что я люблю. Но всё что у меня есть - я люблю!',
+                        login: 'tatianalavr92',
+                        age: 28,
+                        place: 'Ноябрьск',
+                        subscribers: 23,
+                        study: 'Ноябрьский политехнический колледж',
+                        grade: 14,
+                        image: './img/ava.jpg'                        
+                    } 
+                }					
+            }
+        });  
+/*
+        app.config.globalProperties.$filters = {
+            formatPrice: function(val){
+                if(!parseInt(val)) return '';
+                let arr = val.toString().split("");
+                let index = 3;
+                while(arr.length > index){
+                    arr.splice(arr.length - index, 0, " ");
+                    index += 4;
+                }
+                return arr.join("") + ' ' + String.fromCharCode(8381);
+            }
+        };*/
+        
+        let vm = app.mount("#app");
+    </script>
+</body>
+</html>
