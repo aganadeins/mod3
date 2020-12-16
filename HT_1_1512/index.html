@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интернет-магазин электроники</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+    <header><h1>{{sitename}}</h1></header>
+
+    <div id="main">
+        <nav>Навигация</nav>
+        <main>
+            <div class="flex">
+                <div>
+                    <figure>
+                        <img v-bind:src="product.image" width="400"> 
+                        <p id="price"><b>{{product.price}} рублей</b></p>
+                    </figure>
+                </div>
+                <div id="">
+                    <h1 v-text="product.title"></h1>
+                    <p v-html="product.description"><p>
+                    <p>Встроенная память: {{product.memory}} Гб</p>
+                    <p>Диагональ экрана: {{product.diagonal}}"<p>
+                    <p>Разрешение экрана: {{product.resolution}}</p>
+                    <p>Количество камер: {{product.numbofcameras}}</p>
+                    <p>Основная фотокамера: {{product.camera}} Мпикс</p>
+                    <p>Тип разблокировки: {{product.block}}</p>
+                </div>
+            </div>
+        </main>
+    <aside><a href="#">Корзина</a></aside>
+    </div>
+    <footer>Подвал</footer>
+</div>
+
+
+    <script>
+        let app = Vue.createApp({
+            data: function(){
+                return {
+                    sitename: 'MINTIT - магазин электроники для котиков',
+                    product:{
+                        id: 1,
+                        title: 'Xiaomi Redmi Note 8 Pro',
+                        description: '<i>Смартфон Xiaomi Redmi Note 8 Pro 128GB White Белый</i>',
+                        memory: 128,
+                        diagonal: 6.53,
+                        resolution: '2340x1080',
+                        numbofcameras: 4,
+                        camera: 64,
+                        block: 'сканер отпечатка пальца',
+                        price: 17600,
+                        image: './img/xiaomi_note_8_pro.png'                        
+                    } 
+                }					
+            }
+        });  
+/*
+        app.config.globalProperties.$filters = {
+            formatPrice: function(val){
+                if(!parseInt(val)) return '';
+                let arr = val.toString().split("");
+                let index = 3;
+                while(arr.length > index){
+                    arr.splice(arr.length - index, 0, " ");
+                    index += 4;
+                }
+                return arr.join("") + ' ' + String.fromCharCode(8381);
+            }
+        };*/
+        
+        let vm = app.mount("#app");
+    </script>
+</body>
+</html>
